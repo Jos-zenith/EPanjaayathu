@@ -1,0 +1,234 @@
+{
+  "intents": [
+
+    {
+      "tag": "greeting",
+      "patterns": ["Hi", "Hello", "Hey", "Vanakkam", "Hi da", "Hi ma", "Hey bro", "Hey sis"],
+      "responses": ["Hey da, sollu… enna aachu?", "Hi ma, how can I support you today?", "Vanakkam da… epdi iruke?"],
+      "context": [""]
+    },
+
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "See you", "Goodbye", "Okay bye", "Catch you later"],
+      "responses": ["Sarri da, take care ❤️", "Okay ma, na irupen… ping panniko!", "Bye da, stay strong."],
+      "context": [""]
+    },
+
+    {
+      "tag": "thanks",
+      "patterns": ["Thanks", "Thank you", "Very helpful", "Really helped"],
+      "responses": ["Always here da ❤️", "Happy to help ma!", "Anytime da, you’re not alone."],
+      "context": [""]
+    },
+
+    {
+      "tag": "noanswer",
+      "patterns": [],
+      "responses": ["Illa da, puriyala. Little more details kudutha help panna mudiyum.", "Konjam clear-a sollu ma."],
+      "context": [""]
+    },
+
+    {
+      "tag": "start_cbt",
+      "patterns": ["I'm anxious", "I feel anxious", "I'm stressed", "I'm depressed", "Overthinking da", "Mind heavy ma"],
+      "responses": [
+        "Sari da… let’s do a small CBT check. First, **enna situation la start aachunu** sollu… Who, what, where, when?"
+      ],
+      "context": ["cbt_situation"]
+    },
+
+    {
+      "tag": "cbt_situation",
+      "patterns": [
+        "I fought with my partner",
+        "My parents shouted",
+        "My crush ignored me",
+        "I got bad marks",
+        "My bf/gf is not talking"
+      ],
+      "responses": [
+        "Sari da… **intha moment la first negative thought enna vandhuchu?** Usually 1 second-la varum, very sharp-a irukum."
+      ],
+      "context": ["cbt_thought"]
+    },
+
+    {
+      "tag": "cbt_thought",
+      "patterns": [
+        "I'm not good enough",
+        "I am a failure",
+        "Nobody likes me",
+        "I'm useless",
+        "They will leave me"
+      ],
+      "responses": [
+        "Ithu da ‘Automatic Negative Thought’. Now tell me… **intha thought-a evlo percent believe panre? (0–100%)**"
+      ],
+      "context": ["cbt_belief"]
+    },
+
+    {
+      "tag": "cbt_belief",
+      "patterns": ["80", "100", "90 percent", "70%", "60"],
+      "responses": [
+        "Seri da… now let’s challenge it. **Un life-la irunthu oru fact sollu** that goes *against* this negative thought."
+      ],
+      "context": ["cbt_evidence"]
+    },
+
+    {
+      "tag": "cbt_evidence",
+      "patterns": [
+        "My friends appreciate me",
+        "I did well last time",
+        "My partner told I'm improving",
+        "I handled things earlier"
+      ],
+      "responses": [
+        "Super da! That’s strong evidence. Now… **orutharam balanced-a sollu**… A more fair sentence to replace the negative thought?"
+      ],
+      "context": ["cbt_reframe"]
+    },
+
+    {
+      "tag": "cbt_reframe",
+      "patterns": [
+        "I can improve",
+        "One mistake doesn't define me",
+        "I am learning",
+        "People still care about me"
+      ],
+      "responses": [
+        "Nice ma ❤️ Now again… **original thought-a evlo percent believe panre?** (0–100%)"
+      ],
+      "context": ["cbt_finish"]
+    },
+
+    {
+      "tag": "cbt_finish",
+      "patterns": ["20", "10", "5%", "30"],
+      "responses": [
+        "Super da… see? Thought power kammi aagiduchu. Keep this balanced thought safe. Want to do a small grounding exercise?"
+      ],
+      "context": [""]
+    },
+
+    {
+      "tag": "relationship_stress",
+      "patterns": [
+        "I'm confused in relationship",
+        "IDK what to do about my partner",
+        "Should I breakup?",
+        "I'm scared about future",
+        "Family pressure"
+      ],
+      "responses": [
+        "Sari da… romba common in our age group. Let’s do **Decision Clarity CBT**. First, sollu… **exact problem point enna?** (Timing? Trust? Parents? Future?)"
+      ],
+      "context": ["cbt_decision"]
+    },
+
+    {
+      "tag": "cbt_decision",
+      "patterns": [
+        "My parents won't accept",
+        "They are ignoring me",
+        "We are fighting daily",
+        "Career mismatch",
+        "Doubt and insecurity"
+      ],
+      "responses": [
+        "Okay da… now sollu **un heart wants what?**, and **family/pressure wants what?** Both opposites-ah balance pannuvom."
+      ],
+      "context": ["cbt_heart_vs_pressure"]
+    },
+
+    {
+      "tag": "cbt_heart_vs_pressure",
+      "patterns": [
+        "Heart wants them but family won’t accept",
+        "I love them but fear future",
+        "I’m scared both sides"
+      ],
+      "responses": [
+        "Seri da… now identify one thing: **Which fear is louder? Loss-aa? Or guilt-aa?** (Pakka breakup fear? or Parents disappointment fear?)"
+      ],
+      "context": ["cbt_fear_split"]
+    },
+
+    {
+      "tag": "cbt_fear_split",
+      "patterns": ["Fear of losing them", "Fear of parents reaction", "Both equal"],
+      "responses": [
+        "Good da… next step: **Evidence check.** Has this fear ever come true before? Or is it imagination-based?"
+      ],
+      "context": ["cbt_decision_reality"]
+    },
+
+    {
+      "tag": "cbt_decision_reality",
+      "patterns": ["Mostly imagination", "Somewhat true", "Happened before"],
+      "responses": [
+        "Final step da… **Balanced decision frame**: \n1) What you want? \n2) What is realistic? \n3) What is healthy for long-term YOU?\n\nSay it in one line."
+      ],
+      "context": ["cbt_decision_final"]
+    },
+
+    {
+      "tag": "cbt_decision_final",
+      "patterns": [
+        "I need clarity and time",
+        "I want them and also balance family",
+        "I should slow down and think",
+        "I need to work on myself first"
+      ],
+      "responses": [
+        "Mass da… this is the clarity we needed. Proud of you ❤️ If you want, I can save this as your ‘decision note’."
+      ],
+      "context": [""]
+    },
+
+    {
+      "tag": "family_pressure",
+      "patterns": ["Parents not agreeing", "Family not supportive", "Caste issue", "Society pressure"],
+      "responses": [
+        "Understandable da… Indian relationship-la family is a big factor. Let’s break the pressure using **Family-System CBT**.\nFirst… **ungaluku biggest pressure point enna?**"
+      ],
+      "context": ["cbt_family_reason"]
+    },
+
+    {
+      "tag": "cbt_family_reason",
+      "patterns": ["Caste", "Money", "Education", "Career mismatch", "Timing"],
+      "responses": [
+        "Seri… now sollu da… **un parents worry enna nu unaku theriyuma?** Most times love + fear mix-a irukum."
+      ],
+      "context": ["cbt_family_worry"]
+    },
+
+    {
+      "tag": "cbt_family_worry",
+      "patterns": ["They fear society", "They fear I will struggle", "They don't trust my choice"],
+      "responses": [
+        "Okay da… final CBT step: **What is ONE sentence** you can tell them that reduces their fear *without* sacrificing your desire?"
+      ],
+      "context": ["cbt_family_reframe"]
+    },
+
+    {
+      "tag": "cbt_family_reframe",
+      "patterns": [
+        "I will handle things",
+        "Give me time",
+        "I know this person well",
+        "I am thinking maturely"
+      ],
+      "responses": [
+        "Super da, that’s a mature reframe. This is how you balance individuality + family. Want help forming a full message to tell them?"
+      ],
+      "context": [""]
+    }
+
+  ]
+}
