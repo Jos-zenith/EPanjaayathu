@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, Heart, Brain, Sparkles, Moon, Sun } from "lucide-react";
+import { Send, Brain, Sparkles, Shield, MessageCircle } from "lucide-react";
 
 interface Message {
   text: string;
@@ -8,12 +8,12 @@ interface Message {
 
 export default function ChatInterface() {
   const [messages, setMessages] = useState<Message[]>([
-    { text: "Hi da! I'm here to listen. What's on your mind today?", isBot: true },
+    { text: "Hello, I'm here to support you. Feel free to share what's on your mind in a safe, confidential space.", isBot: true },
   ]);
   const [inputMessage, setInputMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const [floatingEmojis, setFloatingEmojis] = useState<Array<{id: number, emoji: string, x: number}>>([]);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -21,21 +21,7 @@ export default function ChatInterface() {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
-
-  // Floating emoji animation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const emojis = ['💙', '🌟', '✨', '💚', '🌈', '🦋', '🌸', '💜'];
-      const newEmoji = {
-        id: Date.now(),
-        emoji: emojis[Math.floor(Math.random() * emojis.length)],
-        x: Math.random() * 100
-      };
-      setFloatingEmojis(prev => [...prev, newEmoji].slice(-8));
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+  }, [messages, isTyping]);
 
   const handleSendMessage = () => {
     const trimmedMessage = inputMessage.trim();
@@ -57,18 +43,18 @@ export default function ChatInterface() {
   const getBotResponse = (msg: string): string => {
     const lower = msg.toLowerCase();
     if (lower.includes('hi') || lower.includes('hello')) {
-      return "Hey da! 😊 How are you feeling today?";
+      return "Hello. I'm here to listen. How are you feeling right now?";
     }
     if (lower.includes('anxious') || lower.includes('stress')) {
-      return "I hear you da, Stress can be overwhelming. Let's break it down together. What situation started this feeling?";
+      return "I understand that anxiety and stress can feel overwhelming. Let's work through this together. Can you tell me more about what's causing these feelings?";
     }
     if (lower.includes('sad') || lower.includes('depressed')) {
-      return "I'm sorry you're feeling this way da, You're not alone. Want to talk about what's making you feel sad?";
+      return "I'm sorry you're experiencing these difficult emotions. You're not alone, and it's okay to feel this way. Would you like to talk about what's been happening?";
     }
     if (lower.includes('thanks') || lower.includes('thank you')) {
-      return "Always here for you da! Remember, you're stronger than you think 💪";
+      return "You're welcome. Remember, seeking support is a sign of strength. I'm here whenever you need to talk.";
     }
-    return "I'm listening da, Tell me more about what you're going through...";
+    return "I'm listening. Please tell me more about what you're experiencing...";
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -79,82 +65,65 @@ export default function ChatInterface() {
   };
 
   return (
-    <div className="relative flex flex-col h-screen overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
-      {/* Animated background pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                           radial-gradient(circle at 80% 80%, rgba(74, 222, 128, 0.3) 0%, transparent 50%),
-                           radial-gradient(circle at 40% 20%, rgba(251, 146, 60, 0.3) 0%, transparent 50%)`,
-          animation: 'pulse 8s ease-in-out infinite'
-        }}/>
-      </div>
-
-      {/* Floating emojis */}
-      {floatingEmojis.map(item => (
-        <div
-          key={item.id}
-          className="absolute text-4xl pointer-events-none animate-float"
-          style={{
-            left: `${item.x}%`,
-            top: '-50px',
-            animation: 'floatUp 6s linear forwards',
-            opacity: 0.4
-          }}
-        >
-          {item.emoji}
-        </div>
-      ))}
-
-      {/* Header with gradient and icons */}
-      <div className="relative bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 backdrop-blur-md shadow-2xl px-6 py-5 border-b-4 border-white/20">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="bg-white/20 p-2 rounded-full backdrop-blur-sm animate-pulse">
-              <Brain className="w-7 h-7 text-white" />
+    <div className="flex flex-col h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      {/* Professional Header */}
+      <header className="bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 shadow-xl border-b border-purple-500/30">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="bg-white/10 p-1.5 sm:p-2 rounded-lg backdrop-blur-sm">
+                <Brain className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-white">
+                  E Panjaayathu
+                </h1>
+                <p className="text-xs sm:text-sm text-purple-100 flex items-center gap-1">
+                  <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="hidden sm:inline">Professional Mental Health Support</span>
+                  <span className="sm:hidden">Mental Health Support</span>
+                </p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-3xl font-bold text-white flex items-center gap-2">
-                E Panjaayathu 
-                <Heart className="w-6 h-6 text-red-300 animate-pulse" />
-              </h1>
-              <p className="text-sm text-white/90 flex items-center gap-1">
-                <Sparkles className="w-4 h-4" />
-                Your Mental Wellness Companion
-              </p>
-            </div>
-          </div>
-          <div className="flex gap-2">
-            <div className="bg-yellow-400/30 p-2 rounded-full animate-spin-slow">
-              <Sun className="w-5 h-5 text-yellow-200" />
-            </div>
-            <div className="bg-blue-400/30 p-2 rounded-full">
-              <Moon className="w-5 h-5 text-blue-200" />
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <div className="bg-emerald-500/20 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border border-emerald-400/30">
+                <span className="text-[10px] sm:text-xs text-emerald-300 font-medium flex items-center gap-1">
+                  <MessageCircle className="w-3 h-3" />
+                  <span className="hidden sm:inline">Online</span>
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Messages area */}
-      <div className="flex-1 overflow-y-auto px-4 py-6 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-transparent">
-        <div className="max-w-4xl mx-auto space-y-4">
+      {/* Messages Container - Fixed scrolling */}
+      <div 
+        ref={chatContainerRef}
+        className="flex-1 overflow-y-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6"
+        style={{
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'rgba(139, 92, 246, 0.5) transparent'
+        }}
+      >
+        <div className="max-w-4xl mx-auto space-y-3 sm:space-y-4">
           {messages.map((message, index) => (
             <div
               key={index}
               className={`flex ${message.isBot ? 'justify-start' : 'justify-end'} animate-slideIn`}
             >
               <div
-                className={`max-w-[75%] px-5 py-4 rounded-3xl shadow-lg transition-all duration-300 hover:scale-105 ${
+                className={`max-w-[85%] sm:max-w-[75%] px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 md:py-4 rounded-2xl sm:rounded-3xl shadow-lg transition-all duration-300 ${
                   message.isBot
-                    ? 'bg-gradient-to-br from-pink-400 via-purple-400 to-indigo-500 text-white rounded-tl-none'
-                    : 'bg-gradient-to-br from-emerald-400 to-cyan-400 text-gray-900 rounded-tr-none'
+                    ? 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-tl-none'
+                    : 'bg-gradient-to-br from-slate-700 to-slate-600 text-white rounded-tr-none'
                 }`}
               >
                 <div className="flex items-start gap-2">
                   {message.isBot && (
-                    <Brain className="w-5 h-5 mt-1 flex-shrink-0 animate-pulse" />
+                    <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 sm:mt-1 flex-shrink-0 opacity-80" />
                   )}
-                  <p className="text-base leading-relaxed whitespace-pre-wrap break-words">
+                  <p className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap break-words">
                     {message.text}
                   </p>
                 </div>
@@ -164,11 +133,11 @@ export default function ChatInterface() {
           
           {isTyping && (
             <div className="flex justify-start animate-slideIn">
-              <div className="bg-gradient-to-br from-pink-400 via-purple-400 to-indigo-500 px-6 py-4 rounded-3xl rounded-tl-none shadow-lg">
-                <div className="flex gap-2">
-                  <div className="w-2.5 h-2.5 bg-white rounded-full animate-bounce" style={{animationDelay: '0ms'}}></div>
-                  <div className="w-2.5 h-2.5 bg-white rounded-full animate-bounce" style={{animationDelay: '150ms'}}></div>
-                  <div className="w-2.5 h-2.5 bg-white rounded-full animate-bounce" style={{animationDelay: '300ms'}}></div>
+              <div className="bg-gradient-to-br from-indigo-500 to-purple-600 px-4 sm:px-6 py-3 sm:py-4 rounded-2xl sm:rounded-3xl rounded-tl-none shadow-lg">
+                <div className="flex gap-1.5 sm:gap-2">
+                  <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-white rounded-full animate-bounce" style={{animationDelay: '0ms'}}></div>
+                  <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-white rounded-full animate-bounce" style={{animationDelay: '150ms'}}></div>
+                  <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-white rounded-full animate-bounce" style={{animationDelay: '300ms'}}></div>
                 </div>
               </div>
             </div>
@@ -177,57 +146,52 @@ export default function ChatInterface() {
         </div>
       </div>
 
-      {/* Input area with gradient border */}
-      <div className="relative bg-gradient-to-t from-purple-900/50 to-transparent backdrop-blur-md border-t-2 border-white/20 px-4 py-5">
+      {/* Input Area - Mobile Optimized */}
+      <div className="bg-slate-900/50 backdrop-blur-md border-t border-purple-500/20 px-3 sm:px-4 md:px-6 py-3 sm:py-4">
         <div className="max-w-4xl mx-auto">
-          <div className="flex gap-3 items-center bg-white/10 backdrop-blur-lg rounded-2xl p-2 shadow-2xl border-2 border-white/20">
+          <div className="flex gap-2 sm:gap-3 items-end bg-slate-800/50 backdrop-blur-lg rounded-xl sm:rounded-2xl p-2 shadow-xl border border-purple-500/30">
             <input
               type="text"
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Share what's on your mind... 💭"
-              className="flex-1 px-4 py-3 bg-transparent text-white placeholder-white/60 focus:outline-none text-base"
+              placeholder="Share your thoughts..."
+              className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-transparent text-white placeholder-slate-400 focus:outline-none text-sm sm:text-base resize-none"
             />
 
             <button
               onClick={handleSendMessage}
-              className="px-6 py-3 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 text-white rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-semibold transform hover:scale-105"
+              className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-lg sm:rounded-xl transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 sm:gap-2 font-medium text-sm sm:text-base active:scale-95"
               disabled={!inputMessage.trim()}
               aria-label="Send message"
             >
-              <Send className="w-5 h-5" />
-              Send
+              <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">Send</span>
             </button>
           </div>
           
-          {/* Quick action buttons */}
-          <div className="flex gap-2 mt-3 flex-wrap justify-center">
-            {['😊 Feeling Good', '😰 Anxious', '❤️ Need Support', '🌟 Motivation'].map((quick, idx) => (
+          {/* Quick action buttons - Mobile Optimized */}
+          <div className="flex gap-1.5 sm:gap-2 mt-2 sm:mt-3 flex-wrap justify-center">
+            {[
+              { emoji: '😊', text: 'Feeling Good', value: 'feeling good' },
+              { emoji: '😰', text: 'Anxious', value: 'anxious' },
+              { emoji: '💬', text: 'Need Support', value: 'need support' },
+              { emoji: '🎯', text: 'Motivation', value: 'motivation' }
+            ].map((quick, idx) => (
               <button
                 key={idx}
-                className="px-4 py-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white text-sm rounded-full transition-all duration-200 border border-white/20 hover:scale-105"
-                onClick={() => setInputMessage(quick.split(' ')[1])}
+                className="px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-slate-800/50 hover:bg-slate-700/50 backdrop-blur-sm text-white text-xs sm:text-sm rounded-full transition-all duration-200 border border-purple-500/20 hover:border-purple-500/40 active:scale-95"
+                onClick={() => setInputMessage(quick.value)}
               >
-                {quick}
+                <span className="sm:hidden">{quick.emoji}</span>
+                <span className="hidden sm:inline">{quick.emoji} {quick.text}</span>
               </button>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Decorative gradient orbs */}
-      <div className="pointer-events-none fixed top-20 right-10 w-64 h-64 bg-pink-500/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="pointer-events-none fixed bottom-20 left-10 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-      <div className="pointer-events-none fixed top-1/2 left-1/2 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-
-      <style jsx>{`
-        @keyframes floatUp {
-          to {
-            transform: translateY(-120vh);
-            opacity: 0;
-          }
-        }
+      <style>{`
         @keyframes slideIn {
           from {
             opacity: 0;
@@ -241,25 +205,20 @@ export default function ChatInterface() {
         .animate-slideIn {
           animation: slideIn 0.4s ease-out;
         }
-        .animate-spin-slow {
-          animation: spin 8s linear infinite;
-        }
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .scrollbar-thin::-webkit-scrollbar {
+        
+        /* Custom scrollbar for webkit browsers */
+        *::-webkit-scrollbar {
           width: 8px;
         }
-        .scrollbar-thin::-webkit-scrollbar-track {
+        *::-webkit-scrollbar-track {
           background: transparent;
         }
-        .scrollbar-thin::-webkit-scrollbar-thumb {
-          background: rgba(168, 85, 247, 0.5);
+        *::-webkit-scrollbar-thumb {
+          background: rgba(139, 92, 246, 0.5);
           border-radius: 4px;
         }
-        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-          background: rgba(168, 85, 247, 0.7);
+        *::-webkit-scrollbar-thumb:hover {
+          background: rgba(139, 92, 246, 0.7);
         }
       `}</style>
     </div>
