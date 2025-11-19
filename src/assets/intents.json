@@ -1,234 +1,493 @@
 {
   "intents": [
-
     {
       "tag": "greeting",
-      "patterns": ["Hi", "Hello", "Hey", "Vanakkam", "Hi da", "Hi ma", "Hey bro", "Hey sis"],
-      "responses": ["Hey da, sollu… enna aachu?", "Hi ma, how can I support you today?", "Vanakkam da… epdi iruke?"],
+      "patterns": [
+        "Hi", "Hello", "Hey", "Vanakkam", "Hi da", "Hi ma", "Hey bro", "Hey sis",
+        "Good morning", "Good evening", "What's up", "Sup", "Hola", "Namaste",
+        "Yo", "Heya", "Greetings", "Hi there", "Hello there", "Hey there"
+      ],
+      "responses": [
+        "Hey da, sollu… enna aachu? 🌟",
+        "Hi ma, how can I support you today? 💙",
+        "Vanakkam da… epdi iruke? 😊",
+        "Hey! I'm here for you. What's on your mind? 🤗",
+        "Hello! Ready to listen da… sollu 💚"
+      ],
       "context": [""]
     },
-
     {
       "tag": "goodbye",
-      "patterns": ["Bye", "See you", "Goodbye", "Okay bye", "Catch you later"],
-      "responses": ["Sarri da, take care ❤️", "Okay ma, na irupen… ping panniko!", "Bye da, stay strong."],
+      "patterns": [
+        "Bye", "See you", "Goodbye", "Okay bye", "Catch you later",
+        "Gotta go", "Talk later", "See ya", "Later", "Peace out",
+        "Take care", "Bye bye", "I'm leaving", "Have to go", "Signing off"
+      ],
+      "responses": [
+        "Sarri da, take care ❤️",
+        "Okay ma, na irupen… ping panniko! 🌈",
+        "Bye da, stay strong. You've got this! 💪",
+        "See you soon! Remember, I'm always here 🌟",
+        "Take care da… you did great today! ✨"
+      ],
       "context": [""]
     },
-
     {
       "tag": "thanks",
-      "patterns": ["Thanks", "Thank you", "Very helpful", "Really helped"],
-      "responses": ["Always here da ❤️", "Happy to help ma!", "Anytime da, you’re not alone."],
+      "patterns": [
+        "Thanks", "Thank you", "Very helpful", "Really helped",
+        "Appreciate it", "Thank you so much", "Thanks a lot", "Grateful",
+        "You're amazing", "This helped", "Feeling better", "That was useful"
+      ],
+      "responses": [
+        "Always here da ❤️",
+        "Happy to help ma! 😊",
+        "Anytime da, you're not alone. 🤗",
+        "That's what I'm here for! Proud of you 💙",
+        "You did the work da, I just guided! 🌟"
+      ],
       "context": [""]
     },
-
     {
       "tag": "noanswer",
       "patterns": [],
-      "responses": ["Illa da, puriyala. Little more details kudutha help panna mudiyum.", "Konjam clear-a sollu ma."],
+      "responses": [
+        "Illa da, puriyala. Little more details kudutha help panna mudiyum. 🤔",
+        "Konjam clear-a sollu ma. I want to help you properly 💭",
+        "Can you explain a bit more? I'm listening da 👂"
+      ],
       "context": [""]
     },
-
     {
-      "tag": "start_cbt",
-      "patterns": ["I'm anxious", "I feel anxious", "I'm stressed", "I'm depressed", "Overthinking da", "Mind heavy ma"],
+      "tag": "start_cbt_anxiety",
+      "patterns": [
+        "I'm anxious", "I feel anxious", "I'm stressed", "I'm depressed",
+        "Overthinking da", "Mind heavy ma", "Can't stop thinking", "Worried",
+        "Panic", "Racing thoughts", "Can't relax", "Tense", "Restless",
+        "Nervous", "Uneasy", "Scared", "Fear", "Pressure", "Overwhelmed",
+        "Too much stress", "Breaking down", "Can't handle", "Suffocating"
+      ],
       "responses": [
-        "Sari da… let’s do a small CBT check. First, **enna situation la start aachunu** sollu… Who, what, where, when?"
+        "Sari da… let's do a small CBT check. First, **enna situation la start aachunu** sollu… Who, what, where, when? 🧠✨"
       ],
       "context": ["cbt_situation"]
     },
-
     {
       "tag": "cbt_situation",
       "patterns": [
-        "I fought with my partner",
-        "My parents shouted",
-        "My crush ignored me",
-        "I got bad marks",
-        "My bf/gf is not talking"
+        "I fought with my partner", "My parents shouted", "My crush ignored me",
+        "I got bad marks", "My bf/gf is not talking", "Failed exam",
+        "Lost my job", "Friend betrayed me", "Rejection", "Breakup",
+        "Family conflict", "Work pressure", "Boss yelled", "Deadline stress",
+        "Financial problem", "Health issue", "Comparison with others",
+        "Social media made me feel bad", "Saw someone's success", "Missed opportunity"
       ],
       "responses": [
-        "Sari da… **intha moment la first negative thought enna vandhuchu?** Usually 1 second-la varum, very sharp-a irukum."
+        "Sari da… **intha moment la first negative thought enna vandhuchu?** Usually 1 second-la varum, very sharp-a irukum. 💭"
       ],
       "context": ["cbt_thought"]
     },
-
     {
       "tag": "cbt_thought",
       "patterns": [
-        "I'm not good enough",
-        "I am a failure",
-        "Nobody likes me",
-        "I'm useless",
-        "They will leave me"
+        "I'm not good enough", "I am a failure", "Nobody likes me",
+        "I'm useless", "They will leave me", "I always mess up",
+        "I'm worthless", "Nothing works for me", "I'm a disappointment",
+        "Everyone is better than me", "I can't do anything right",
+        "I'm unlovable", "I'm stupid", "I'm weak", "I'm a burden",
+        "I'll never succeed", "Life is pointless", "I'm alone",
+        "No one cares", "I'm too sensitive", "I'm broken"
       ],
       "responses": [
-        "Ithu da ‘Automatic Negative Thought’. Now tell me… **intha thought-a evlo percent believe panre? (0–100%)**"
+        "Ithu da 'Automatic Negative Thought'. Now tell me… **intha thought-a evlo percent believe panre? (0–100%)** 📊"
       ],
       "context": ["cbt_belief"]
     },
-
     {
       "tag": "cbt_belief",
-      "patterns": ["80", "100", "90 percent", "70%", "60"],
+      "patterns": [
+        "80", "100", "90 percent", "70%", "60", "50%", "85",
+        "95", "75", "65", "Almost fully", "Completely", "Very much",
+        "Strongly believe", "Totally", "100%", "90", "80%"
+      ],
       "responses": [
-        "Seri da… now let’s challenge it. **Un life-la irunthu oru fact sollu** that goes *against* this negative thought."
+        "Seri da… now let's challenge it. **Un life-la irunthu oru fact sollu** that goes *against* this negative thought. 🔍💡"
       ],
       "context": ["cbt_evidence"]
     },
-
     {
       "tag": "cbt_evidence",
       "patterns": [
-        "My friends appreciate me",
-        "I did well last time",
-        "My partner told I'm improving",
-        "I handled things earlier"
+        "My friends appreciate me", "I did well last time",
+        "My partner told I'm improving", "I handled things earlier",
+        "I helped someone", "I achieved something before",
+        "People trust me", "I solved a problem", "I'm good at something",
+        "I completed a task", "Someone thanked me", "I overcame before",
+        "I learned from mistakes", "I'm still trying", "I'm here today"
       ],
       "responses": [
-        "Super da! That’s strong evidence. Now… **orutharam balanced-a sollu**… A more fair sentence to replace the negative thought?"
+        "Super da! That's strong evidence. Now… **orutharam balanced-a sollu**… A more fair sentence to replace the negative thought? ⚖️✨"
       ],
       "context": ["cbt_reframe"]
     },
-
     {
       "tag": "cbt_reframe",
       "patterns": [
-        "I can improve",
-        "One mistake doesn't define me",
-        "I am learning",
-        "People still care about me"
+        "I can improve", "One mistake doesn't define me",
+        "I am learning", "People still care about me",
+        "I have strengths too", "I'm doing my best",
+        "This is temporary", "I can handle this", "I'm growing",
+        "I have good qualities", "I'm human", "I'm enough",
+        "I'm on my journey", "I'm resilient", "I matter"
       ],
       "responses": [
-        "Nice ma ❤️ Now again… **original thought-a evlo percent believe panre?** (0–100%)"
+        "Nice ma ❤️ Now again… **original thought-a evlo percent believe panre?** (0–100%) 📉"
       ],
       "context": ["cbt_finish"]
     },
-
     {
       "tag": "cbt_finish",
-      "patterns": ["20", "10", "5%", "30"],
-      "responses": [
-        "Super da… see? Thought power kammi aagiduchu. Keep this balanced thought safe. Want to do a small grounding exercise?"
+      "patterns": [
+        "20", "10", "5%", "30", "25", "15", "40", "Less now",
+        "Much less", "Reduced", "Lower", "Not as much", "Dropped"
       ],
-      "context": [""]
+      "responses": [
+        "Super da… see? Thought power kammi aagiduchu. Keep this balanced thought safe. 🌈💪 Want to do a small grounding exercise?"
+      ],
+      "context": ["grounding_offer"]
     },
-
     {
       "tag": "relationship_stress",
       "patterns": [
-        "I'm confused in relationship",
-        "IDK what to do about my partner",
-        "Should I breakup?",
-        "I'm scared about future",
-        "Family pressure"
+        "I'm confused in relationship", "IDK what to do about my partner",
+        "Should I breakup?", "I'm scared about future", "Family pressure",
+        "Relationship problem", "Love confusion", "Partner issue",
+        "Don't know if they love me", "Commitment fear", "Trust issues",
+        "Long distance struggle", "Compatibility doubt", "Fighting always",
+        "Feel unloved", "Ignored by partner", "One-sided love",
+        "Should I wait?", "They changed", "Lost feelings"
       ],
       "responses": [
-        "Sari da… romba common in our age group. Let’s do **Decision Clarity CBT**. First, sollu… **exact problem point enna?** (Timing? Trust? Parents? Future?)"
+        "Sari da… romba common in our age group. Let's do **Decision Clarity CBT**. First, sollu… **exact problem point enna?** (Timing? Trust? Parents? Future?) 💑💭"
       ],
       "context": ["cbt_decision"]
     },
-
     {
       "tag": "cbt_decision",
       "patterns": [
-        "My parents won't accept",
-        "They are ignoring me",
-        "We are fighting daily",
-        "Career mismatch",
-        "Doubt and insecurity"
+        "My parents won't accept", "They are ignoring me",
+        "We are fighting daily", "Career mismatch", "Doubt and insecurity",
+        "Distance problem", "Time management", "Jealousy", "Different values",
+        "Communication gap", "Expectations mismatch", "Past hurts",
+        "Future uncertainty", "Financial stress", "Different goals"
       ],
       "responses": [
-        "Okay da… now sollu **un heart wants what?**, and **family/pressure wants what?** Both opposites-ah balance pannuvom."
+        "Okay da… now sollu **un heart wants what?**, and **family/pressure wants what?** Both opposites-ah balance pannuvom. 💙💚"
       ],
       "context": ["cbt_heart_vs_pressure"]
     },
-
     {
       "tag": "cbt_heart_vs_pressure",
       "patterns": [
-        "Heart wants them but family won’t accept",
-        "I love them but fear future",
-        "I’m scared both sides"
+        "Heart wants them but family won't accept",
+        "I love them but fear future", "I'm scared both sides",
+        "Want to stay but parents say no", "Confused between love and logic",
+        "Heart says yes mind says no", "Family or love", "Torn between both"
       ],
       "responses": [
-        "Seri da… now identify one thing: **Which fear is louder? Loss-aa? Or guilt-aa?** (Pakka breakup fear? or Parents disappointment fear?)"
+        "Seri da… now identify one thing: **Which fear is louder? Loss-aa? Or guilt-aa?** (Pakka breakup fear? or Parents disappointment fear?) 🎭"
       ],
       "context": ["cbt_fear_split"]
     },
-
     {
       "tag": "cbt_fear_split",
-      "patterns": ["Fear of losing them", "Fear of parents reaction", "Both equal"],
+      "patterns": [
+        "Fear of losing them", "Fear of parents reaction", "Both equal",
+        "Losing love", "Guilt", "Regret", "Shame", "Disapproval fear",
+        "Being alone fear", "Wrong choice fear"
+      ],
       "responses": [
-        "Good da… next step: **Evidence check.** Has this fear ever come true before? Or is it imagination-based?"
+        "Good da… next step: **Evidence check.** Has this fear ever come true before? Or is it imagination-based? 🔎"
       ],
       "context": ["cbt_decision_reality"]
     },
-
     {
       "tag": "cbt_decision_reality",
-      "patterns": ["Mostly imagination", "Somewhat true", "Happened before"],
+      "patterns": [
+        "Mostly imagination", "Somewhat true", "Happened before",
+        "Never happened", "Just fear", "Real experience", "Both mixed",
+        "Not sure", "Maybe", "Possible"
+      ],
       "responses": [
-        "Final step da… **Balanced decision frame**: \n1) What you want? \n2) What is realistic? \n3) What is healthy for long-term YOU?\n\nSay it in one line."
+        "Final step da… **Balanced decision frame**: \n1) What you want? \n2) What is realistic? \n3) What is healthy for long-term YOU?\n\nSay it in one line. 🌟"
       ],
       "context": ["cbt_decision_final"]
     },
-
     {
       "tag": "cbt_decision_final",
       "patterns": [
-        "I need clarity and time",
-        "I want them and also balance family",
-        "I should slow down and think",
-        "I need to work on myself first"
+        "I need clarity and time", "I want them and also balance family",
+        "I should slow down and think", "I need to work on myself first",
+        "Take things step by step", "Communication is needed", "Give it time",
+        "Focus on myself", "Need honest conversation", "See how things go"
       ],
       "responses": [
-        "Mass da… this is the clarity we needed. Proud of you ❤️ If you want, I can save this as your ‘decision note’."
+        "Mass da… this is the clarity we needed. Proud of you ❤️✨ If you want, I can save this as your 'decision note'."
       ],
       "context": [""]
     },
-
     {
       "tag": "family_pressure",
-      "patterns": ["Parents not agreeing", "Family not supportive", "Caste issue", "Society pressure"],
+      "patterns": [
+        "Parents not agreeing", "Family not supportive", "Caste issue",
+        "Society pressure", "Parents expectations", "Family drama",
+        "Conservative family", "Forced marriage", "Career pressure from family",
+        "Comparison with siblings", "Family not understanding", "Traditional mindset"
+      ],
       "responses": [
-        "Understandable da… Indian relationship-la family is a big factor. Let’s break the pressure using **Family-System CBT**.\nFirst… **ungaluku biggest pressure point enna?**"
+        "Understandable da… Indian relationship-la family is a big factor. Let's break the pressure using **Family-System CBT**.\nFirst… **ungaluku biggest pressure point enna?** 👨‍👩‍👧‍👦💭"
       ],
       "context": ["cbt_family_reason"]
     },
-
     {
       "tag": "cbt_family_reason",
-      "patterns": ["Caste", "Money", "Education", "Career mismatch", "Timing"],
+      "patterns": [
+        "Caste", "Money", "Education", "Career mismatch", "Timing",
+        "Religion", "Status", "Age", "Background", "Reputation",
+        "Society opinion", "Relatives gossip", "Wrong time", "Not settled yet"
+      ],
       "responses": [
-        "Seri… now sollu da… **un parents worry enna nu unaku theriyuma?** Most times love + fear mix-a irukum."
+        "Seri… now sollu da… **un parents worry enna nu unaku theriyuma?** Most times love + fear mix-a irukum. 🤔💚"
       ],
       "context": ["cbt_family_worry"]
     },
-
     {
       "tag": "cbt_family_worry",
-      "patterns": ["They fear society", "They fear I will struggle", "They don't trust my choice"],
+      "patterns": [
+        "They fear society", "They fear I will struggle",
+        "They don't trust my choice", "They worry about my future",
+        "Security concern", "Financial worry", "Status anxiety",
+        "Fear of judgment", "Protection instinct", "Cultural values"
+      ],
       "responses": [
-        "Okay da… final CBT step: **What is ONE sentence** you can tell them that reduces their fear *without* sacrificing your desire?"
+        "Okay da… final CBT step: **What is ONE sentence** you can tell them that reduces their fear *without* sacrificing your desire? 💬✨"
       ],
       "context": ["cbt_family_reframe"]
     },
-
     {
       "tag": "cbt_family_reframe",
       "patterns": [
-        "I will handle things",
-        "Give me time",
-        "I know this person well",
-        "I am thinking maturely"
+        "I will handle things", "Give me time", "I know this person well",
+        "I am thinking maturely", "I understand your concern",
+        "Let me prove myself", "I'm being responsible", "Trust my judgment",
+        "I won't rush", "I'll be careful", "I respect your views"
       ],
       "responses": [
-        "Super da, that’s a mature reframe. This is how you balance individuality + family. Want help forming a full message to tell them?"
+        "Super da, that's a mature reframe. This is how you balance individuality + family. 🌈👏 Want help forming a full message to tell them?"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "grounding_exercise",
+      "patterns": [
+        "Yes grounding", "Okay", "Sure", "Help me calm", "Yes please",
+        "I need to relax", "Grounding exercise", "Calm me down"
+      ],
+      "responses": [
+        "Perfect da! Let's do **5-4-3-2-1 Grounding** 🌟\n\n**Name:**\n5️⃣ things you can SEE\n4️⃣ things you can TOUCH\n3️⃣ things you can HEAR\n2️⃣ things you can SMELL\n1️⃣ thing you can TASTE\n\nStart with 5 things around you… what do you see? 👀"
+      ],
+      "context": ["grounding_active"]
+    },
+    {
+      "tag": "academic_stress",
+      "patterns": [
+        "Exam fear", "Study pressure", "Can't concentrate", "Failing",
+        "Bad grades", "Can't study", "Too much syllabus", "Competition stress",
+        "Board exam tension", "Entrance exam worry", "Lost motivation to study",
+        "Parents expecting too much", "Fear of failure", "Memory issues"
+      ],
+      "responses": [
+        "Academic stress is real da 📚😓 Let's do **Study Anxiety CBT**. First, **what's the exact fear?** (Failure? Disappointing parents? Future ruined? Can't remember?)"
+      ],
+      "context": ["cbt_academic_fear"]
+    },
+    {
+      "tag": "cbt_academic_fear",
+      "patterns": [
+        "Fear of failing", "Parents will be disappointed", "Future will be ruined",
+        "Can't remember anything", "Everyone is better", "Too much competition",
+        "Time is less", "Not prepared", "Will disappoint everyone"
+      ],
+      "responses": [
+        "Okay da… now, **evidence check**: Have you ALWAYS failed? Or are there times you DID well? 🤔📖"
+      ],
+      "context": ["cbt_academic_evidence"]
+    },
+    {
+      "tag": "cbt_academic_evidence",
+      "patterns": [
+        "I did well before", "Some subjects I'm good at", "I passed earlier",
+        "I can do it with effort", "I've improved before", "I remember some things"
+      ],
+      "responses": [
+        "Good da! Now **balanced thought**: Instead of 'I will fail', what's a realistic sentence? 💡"
+      ],
+      "context": ["cbt_academic_reframe"]
+    },
+    {
+      "tag": "cbt_academic_reframe",
+      "patterns": [
+        "I can do my best", "One exam doesn't define me", "I can improve",
+        "I'll focus and try", "Effort matters", "I'm capable of learning"
+      ],
+      "responses": [
+        "Perfect da! 🌟 Want some **study tips** to manage the stress better?"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "loneliness",
+      "patterns": [
+        "I feel alone", "No one understands me", "I have no friends",
+        "Everyone left me", "Lonely", "Isolated", "No one to talk to",
+        "Feel disconnected", "Abandoned", "Empty inside", "Missing someone"
+      ],
+      "responses": [
+        "Loneliness hurts da 💙 Let's work through it. **Is this feeling recent or long-term?** And **what triggered it?** 🤗"
+      ],
+      "context": ["loneliness_explore"]
+    },
+    {
+      "tag": "self_harm_thoughts",
+      "patterns": [
+        "I want to hurt myself", "Thinking of ending it", "Life is pointless",
+        "Want to die", "Can't take it anymore", "Suicide thoughts",
+        "Self harm", "Cutting", "Want to disappear"
+      ],
+      "responses": [
+        "Da, I'm really concerned about you ❤️🚨 These thoughts are serious. **Please reach out to:**\n\n🇮🇳 **Vandrevala Foundation**: 1860-2662-345\n🌍 **AASRA**: 91-22-27546669\n\nOr tell a trusted adult NOW. You matter da, and help is available. Can you promise me you'll reach out? 💚"
+      ],
+      "context": ["crisis_support"]
+    },
+    {
+      "tag": "body_image",
+      "patterns": [
+        "I'm ugly", "I hate my body", "Too fat", "Too thin",
+        "Not attractive", "Dark skin problem", "Height issue",
+        "Acne problem", "Don't like my looks", "Everyone is prettier"
+      ],
+      "responses": [
+        "Body image struggles are real da 💙 Let's challenge this. **What specifically bothers you?** And **who compared or what made you feel this way?** 🌸"
+      ],
+      "context": ["body_image_explore"]
+    },
+    {
+      "tag": "social_anxiety",
+      "patterns": [
+        "Scared to talk to people", "Fear of judgment", "Can't speak in public",
+        "Nervous in groups", "What will people think", "Embarrassed easily",
+        "Avoid social situations", "Stage fear", "Presentation anxiety"
+      ],
+      "responses": [
+        "Social anxiety is common da 🎭 Let's work on it. **What exactly happens?** (Heart beats fast? Mind goes blank? Sweating? Fear of saying wrong thing?) 🌟"
+      ],
+      "context": ["social_anxiety_explore"]
+    },
+    {
+      "tag": "career_confusion",
+      "patterns": [
+        "Don't know what to do", "Career confused", "Wrong field chosen",
+        "Peer pressure in career", "Parents forcing career", "Passion vs Money",
+        "Should I follow dreams?", "Practical vs Creative", "Job or higher studies?"
+      ],
+      "responses": [
+        "Career confusion is huge in our age da 🎯 Let's do **Career Clarity CBT**. First, **what are your top 3 interests?** (Even if not 'practical') ✨"
+      ],
+      "context": ["career_explore"]
+    },
+    {
+      "tag": "sleep_issues",
+      "patterns": [
+        "Can't sleep", "Insomnia", "Nightmares", "Wake up tired",
+        "Overthinking at night", "Sleep anxiety", "Too much sleep",
+        "Irregular sleep", "Racing thoughts before bed"
+      ],
+      "responses": [
+        "Sleep problems affect everything da 😴💙 Let's check: **What keeps you awake?** (Thoughts? Stress? Screen time? Fear?) 🌙"
+      ],
+      "context": ["sleep_explore"]
+    },
+    {
+      "tag": "comparison_trap",
+      "patterns": [
+        "Everyone is better than me", "My friends are ahead", "Instagram makes me sad",
+        "Success comparison", "Feel behind in life", "Others have it easy",
+        "Why am I slow?", "Everyone is happy except me"
+      ],
+      "responses": [
+        "Comparison trap is toxic da 📱💭 Let's do **Reality Check CBT**. Tell me: **Whose life are you comparing to?** And **what exactly do they have that you feel you lack?** 🔍"
+      ],
+      "context": ["comparison_reality"]
+    },
+    {
+      "tag": "anger_issues",
+      "patterns": [
+        "I get angry quickly", "Can't control anger", "Rage", "Short temper",
+        "Break things when angry", "Shout at people", "Regret after anger",
+        "Anger bursts", "Irritated always"
+      ],
+      "responses": [
+        "Anger is an emotion da, but we can manage it 🔥💚 Let's identify: **What usually triggers your anger?** (Disrespect? Helplessness? Unfairness? Frustration?) 🧠"
+      ],
+      "context": ["anger_explore"]
+    },
+    {
+      "tag": "procrastination",
+      "patterns": [
+        "I keep postponing", "Can't start tasks", "Lazy", "No motivation",
+        "Distracted easily", "Waste time", "Last minute person",
+        "Can't focus", "Procrastinate always"
+      ],
+      "responses": [
+        "Procrastination is a mind trick da ⏰🧠 Let's break it. **What do you avoid most?** (Studies? Work? Decisions? Difficult tasks?) 💡"
+      ],
+      "context": ["procrastination_explore"]
+    },
+    {
+      "tag": "perfectionism",
+      "patterns": [
+        "It's never good enough", "I'm too hard on myself", "Need to be perfect",
+        "Fear of mistakes", "High standards", "Can't accept failure",
+        "All or nothing thinking", "If not perfect then failure"
+      ],
+      "responses": [
+        "Perfectionism exhausts you da 🎯😓 Let's reframe. **What happens if you're NOT perfect?** (Real consequence vs imagined fear?) 🌈"
+      ],
+      "context": ["perfectionism_explore"]
+    },
+    {
+      "tag": "guilt_shame",
+      "patterns": [
+        "I feel guilty", "Shame", "I'm a bad person", "I did something wrong",
+        "Can't forgive myself", "Regret", "Ashamed of myself",
+        "Keep thinking about past mistakes"
+      ],
+      "responses": [
+        "Guilt and shame are heavy da 💙 Let's process it. **What exactly happened?** And **what makes you feel this way?** 🕊️"
+      ],
+      "context": ["guilt_explore"]
+    },
+    {
+      "tag": "positive_affirmation_request",
+      "patterns": [
+        "I need motivation", "Tell me something positive", "Boost me up",
+        "Feeling low", "Encouragement needed", "Give me hope",
+        "Need strength", "Inspire me"
+      ],
+      "responses": [
+        "Listen da 💙✨\n\nYou're **stronger than you think**.\nYou've survived **100% of your worst days**.\nYour story isn't over.\nOne step at a time is still progress.\n\n**You matter. You're enough. You're not alone.** 🌟💪\n\nNow, let's tackle what's bothering you. Sollu da… 🤗"
       ],
       "context": [""]
     }
-
   ]
 }
